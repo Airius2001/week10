@@ -1,0 +1,36 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "height": 400,
+    "width": 500,
+    "title":"Analogy of crime type from 2001 to 2016 in USA",
+    "data": {
+      "url": "https://raw.githubusercontent.com/Airius2001/week10/main/rearranged_crime_total.csv"
+    },
+    "transform": [
+      {"calculate": "toNumber(datum.year)", "as": "yearInt"},
+      {"filter": "datum.yearInt === YearSelector"}
+    ],
+    "params": [
+      {
+        "name": "YearSelector",
+        "value": 2001,
+        "bind": {
+          "input": "range",
+          "min": 2001,
+          "max": 2016,
+          "step": 1,
+          "name": "Year Selector: "
+        }
+      }
+    ],
+    "mark": {"type": "arc", "innerRadius": 50},
+    "encoding": {
+      "theta": {"field": "value", "type": "quantitative"},
+      "color": {"field": "category", "type": "nominal", "title": "Crime type"},
+      "tooltip": [
+        {"field": "category", "type": "nominal", "title": "Crime type: "},
+        {"field": "value", "type": "quantitative", "title": "amount: "}
+      ]
+    }
+  }
+  

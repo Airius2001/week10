@@ -1,0 +1,30 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width":500,
+  "height":400,
+  "data": {"url": "https://raw.githubusercontent.com/Airius2001/3179/main/cleaned.csv"},
+  "title":"Map of the number of incarcerated people in the United States from 2001 to 2016",
+  "mark": {
+    "type": "line",
+    "point": true
+  },
+  "encoding": {
+    "x":{
+      "field": "year",
+      "type": "quantitative",
+      "axis": {"format": "d"},
+      "title": "Year"
+    },
+    "y":{
+      "aggregate":"sum",
+      "field": "Prisoner_sum",
+      "type": "quantitative",
+      "scale": {"domain": [1000000, 1400000]},
+      "title": "Prisoner count by each year"
+    },
+    "tooltip":[
+      {"field": "year", "type": "nominal", "title": "Year: "},
+      {"field": "sum_Prisoner_sum", "type": "quantitative", "title": "Number Of Prisoner: "}
+    ]
+  }
+}
